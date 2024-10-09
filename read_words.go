@@ -20,7 +20,7 @@ type sensitiveWords struct {
 	words []string
 }
 
-func newSensitiveWords(skipWords ...string) sensitiveWords {
+func newSensitiveWords(skipWords ...string) (sensitiveWords, error) {
 
 	filePaths := []string{
 		filePathAd, filePathGunsExplosives, filePathPolitic, filePathWebsite,
@@ -37,15 +37,17 @@ func newSensitiveWords(skipWords ...string) sensitiveWords {
 		words:     make([]string, 0),
 	}
 
-	s.read()
+	if err := s.read(); err != nil {
+		return sensitiveWords{}, err
+	}
 
-	return s
+	return s, nil
 }
 
 func (s *sensitiveWords) read() error {
 
 	for _, filePath := range s.filePaths {
-		sw, err := s.readFileByLines(filePath)
+		sw, err := s.readFileByLines(filePath) //#nosec G304
 		if err != nil {
 			return err
 		}

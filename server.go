@@ -12,10 +12,15 @@ type server struct {
 	checker Checker
 }
 
-func NewServer() pb.CheckServer {
-	return &server{
-		checker: newChecker(),
+func NewServer() (pb.CheckServer, error) {
+	checker, err := newChecker()
+	if err != nil {
+		return nil, err
 	}
+
+	return &server{
+		checker: checker,
+	}, nil
 }
 
 func (s *server) Check(ctx context.Context, word *pb.Word) (*pb.BoolMsg, error) {

@@ -23,7 +23,10 @@ func main() {
 	}
 
 	// sensitive word check server
-	swSvc := NewServer()
+	swSvc, err := NewServer()
+	if err != nil {
+		log.Fatalf("new grpc server failed, err: %v", err.Error())
+	}
 
 	s := grpc.NewServer()
 	pb.RegisterCheckServer(s, swSvc)

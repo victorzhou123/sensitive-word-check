@@ -5,7 +5,10 @@ import "testing"
 var c Checker
 
 func init() {
-	c = newChecker()
+	var err error
+	if c, err = newChecker(); err != nil {
+		return
+	}
 }
 
 func Test_checker_Check(t *testing.T) {

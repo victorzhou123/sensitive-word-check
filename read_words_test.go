@@ -7,7 +7,7 @@ import (
 var sensitiveWord sensitiveWords
 
 func init() {
-	sensitiveWord = newSensitiveWords()
+	sensitiveWord, _ = newSensitiveWords()
 }
 
 func Test_sensitiveWords_read(t *testing.T) {
