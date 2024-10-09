@@ -47,8 +47,7 @@ func newSensitiveWords(skipWords ...string) (sensitiveWords, error) {
 func (s *sensitiveWords) read() error {
 
 	for _, filePath := range s.filePaths {
-		//#nosec G304
-		sw, err := s.readFileByLines(filePath)
+		sw, err := s.readFileByLines(filePath) //#nosec G304
 		if err != nil {
 			return err
 		}
@@ -60,7 +59,7 @@ func (s *sensitiveWords) read() error {
 }
 
 func (s *sensitiveWords) readFileByLines(filePath string) ([]string, error) {
-	file, err := os.Open(filePath)
+	file, err := os.Open(filePath) //#nosec G304
 	if err != nil {
 		return nil, fmt.Errorf("failed to open file %s: %w", filePath, err)
 	}
