@@ -47,7 +47,8 @@ func newSensitiveWords(skipWords ...string) (sensitiveWords, error) {
 func (s *sensitiveWords) read() error {
 
 	for _, filePath := range s.filePaths {
-		sw, err := s.readFileByLines(filePath) //#nosec G304
+		//#nosec G304
+		sw, err := s.readFileByLines(filePath)
 		if err != nil {
 			return err
 		}
