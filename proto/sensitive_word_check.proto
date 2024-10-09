@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "github.com/victorzhou123/sensitive-word-check/proto";
+
+package proto;
+
+service check {
+    rpc check(word) returns (boolMsg) {}
+}
+
+message word {
+    string word = 1;
+}
+
+message boolMsg {
+    bool val = 1;
+}
