@@ -8,6 +8,6 @@ RUN cd /go/src/github.com/victorzhou123/sensitive-word-check && GO111MODULE=on C
 FROM alpine:latest
 WORKDIR /opt/app/
 
-COPY  --from=BUILDER /go/src/github.com/victorzhou123/sensitive-word-check/sensitive-word-check /opt/app
+COPY  --from=BUILDER /go/src/github.com/victorzhou123/sensitive-word-check /opt/app
 
 ENTRYPOINT ["/opt/app/sensitive-word-check"]
