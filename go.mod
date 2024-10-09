@@ -1,6 +1,6 @@
 module github.com/victorzhou123/sensitive-word-check
 
-go 1.21.5
+go 1.21
 
 require (
 	google.golang.org/grpc v1.67.1
