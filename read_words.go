@@ -31,10 +31,15 @@ func newSensitiveWords(skipWords ...string) sensitiveWords {
 		sw[words] = struct{}{}
 	}
 
-	return sensitiveWords{
+	s := sensitiveWords{
 		filePaths: filePaths,
 		skipWords: sw,
+		words:     make([]string, 0),
 	}
+
+	s.read()
+
+	return s
 }
 
 func (s *sensitiveWords) read() error {
@@ -64,7 +69,7 @@ func (s *sensitiveWords) readFileByLines(filePath string) ([]string, error) {
 	for scanner.Scan() {
 		line := scanner.Text()
 
-		if _, ok := s.skipWords[line]; !ok {
+		if _, ok := s.skipWords[line]; ok {
 			continue
 		}
 
