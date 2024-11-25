@@ -37,6 +37,14 @@ func Test_checker_Check(t *testing.T) {
 			},
 			false,
 		},
+		{
+			"test3",
+			c,
+			args{
+				"xjp",
+			},
+			true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
